@@ -1,0 +1,55 @@
+
+<lift:surround with="default" at="content">
+    <head>
+        <!-- include the required plugins -->
+        <script type="text/javascript" src="/scripts/date.js"></script>
+        <!--[if IE]>
+        <script type="text/javascript" src="/scripts/jquery.bgiframe.js">
+        </script>
+        <![endif]-->
+        ​
+        <!-- include the jQuery DatePicker JavaScript and CSS -->
+        <script type="text/javascript" src="/scripts/jquery.datePicker.js">
+        </script>
+        <link rel="stylesheet" type="text/css" href="/style/datePicker.css" />
+    </head>
+    <!-- The contents of this element will be passed to the summary method
+         in the HomePage snippet. The call to bind in that method will
+         replace the XML tags below (e.g. account:name) with the account
+         data and return a NodeSeq to replace the lift:HomePage.summary
+         element. -->
+    <lift:HomePage.summary>
+        <div class="column span-24 bordered">
+            <h2>Resumen de cuentas:</h2>
+            <account:entry>
+                <acct:name /> : <acct:balance /> <br/>
+            </account:entry>
+        </div>
+        <hr />
+    </lift:HomePage.summary>
+    ​
+    <div class="column span-24">
+        <!-- The contents of this element will be passed into the add method
+       in the AddEntry snippet. A form element with method "POST" will
+       be created and the XML tags (e.g. e:account) below will be
+       replaced with form elements via the call to bind in the add
+       method. This form will replace the lift:AddEntry.addentry element
+       below. -->
+        <lift:AddEntry.addentry form="POST">
+            <div id="entryform">
+                <div class="column span-24"><h3>Entry Form</h3>
+                    <e:account /> <e:dateOf /> <e:desc /> <e:value />
+                    <e:tags/><button>Add $</button>
+                </div>
+            </div>
+        </lift:AddEntry.addentry>
+    </div>
+    ​
+    <script type="text/javascript">
+        Date.format = 'yyyy/mm/dd';
+        jQuery(function () {
+            jQuery('#entrydate').datePicker({startDate:'00010101',
+            clickInput:true});
+        })
+    </script>
+</lift:surround>

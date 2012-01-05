@@ -1,0 +1,52 @@
+<lift:surround with="default" at="content">
+
+  <lift:Accounts.detail eager_eval="true"> 
+<head>
+  <acct:atomLink />
+</head>
+<div class="column span-24">
+  <h2>Summary</h2>
+    <table>
+      <tr>
+	<th>Name</th>
+	<th>Balance</th>
+      </tr>
+      <tr>
+	<td><acct:name /></td>
+	<td><acct:balance /></td>
+      </tr>
+    </table>
+
+    <div>
+    <span style="font-weight: bold;">Tags:</span> <acct:tags />
+    </div>
+
+    <div>
+      <h3>Filters:</h3>
+      <table id="entryform">
+	<tr>
+	  <th>Start Date</th>
+	  <td><acct:startDate /></td>
+	  <th>End Date</th>
+	  <td><acct:endDate /></td>
+	  <th>Graph Type</th>
+	  <td><acct:graphType /></td>
+	</tr>
+      </table>
+    </div>
+
+    <div id="entry_graph">
+      <acct:graph />
+    </div>
+</div>
+
+<hr/>
+
+<div class="column span-24" >
+  <h2>Transactions</h2>
+  <lift:embed what="entry_table" />
+  <!-- TODO: needs pagination -->
+</div>
+  </lift:Accounts.detail>
+
+</lift:surround>
